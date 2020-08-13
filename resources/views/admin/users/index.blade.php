@@ -75,8 +75,6 @@
 </div>
 
 <script>
-    var url;
-    var id;
     $(document).ready(function() {
         $.ajaxSetup({
             headers: {
@@ -105,5 +103,4 @@
         content: "Bạn có muốn xóa không?",
     });
 </script>
-
 @endsection
