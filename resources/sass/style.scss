@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hapo-banner {
+    background: url('../../public/admin/images/bannerheader.jpg') no-repeat center/cover;
+ 
+    .hapo-banner-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+
+        p {
+            padding: 120px;
+            font-size: 60px;
+        }
+    }
+}
+
+.hapo-wrap-content {
+    .hapo-content-left {
+        background-color: #e3f0fb;
+    }
+}
+
+.hapo-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 90px;
+        height: 80px;
+        border-radius: 50%;
+    }
+}
+
+.hapo-img-avatar {
+     width: 90px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.hapo-footer {
+    background-color: #454545;
+    font: normal bold 15px/20px Arial;
+    color: white;
+    height: 63px;
+}
+

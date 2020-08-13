@@ -23,6 +23,8 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "bootstrap": "^4.5.2"
+        "bootstrap": "^4.5.2",
+        "jquery-confirm": "^3.3.4",
+        "sweetalert2": "^9.17.1"
     }
 }

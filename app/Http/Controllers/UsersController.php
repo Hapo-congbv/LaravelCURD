@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UsersRequestUpdate;
 use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller {
@@ -30,7 +31,7 @@ class UsersController extends Controller {
         //user image avatar
         $userImageName = uniqid().'_'. $userImage->getClientOriginalName();
         $userImage->storeAs('public/', $userImageName);
-        //
+
         $user::AddUser($username, $userImageName, $password, $fullname, $email, $mobile);
         return redirect()->route('users.index')-> with('message', __('messages.success.create'));
     }
@@ -47,7 +48,7 @@ class UsersController extends Controller {
         return view('admin.users.edit', compact('users'));
     }
 
-    public function update($id, Request $request) {
+    public function update($id, UsersRequestUpdate $request) {
         $user =  new Users();
         $username =  trim($request->input('username'));
         $email = $request->input('email');
@@ -55,18 +56,17 @@ class UsersController extends Controller {
         $mobile =  $request->input('mobile');
         $userImage = $request->file('userImage');
         $password = $request->input('password');
-
         //user image avatar
         if ($userImage != null) {
             $userImageName = uniqid() . '_' . $userImage->getClientOriginalName();
             $userImage->storeAs('public/', $userImageName);
             $image =  $user::find($id)->userImage;
             Storage::delete('public/' . $image); 
-            $user::UpdateUser($id, $username, $userImageName, $password, $fullname, $email, $mobile);
         } else {
-            $user::UpdateU($id, $username, $password, $fullname, $email, $mobile);
+            $userImageName = $user::find($id)->userImage;
         }
 
+        $user::UpdateUser($id, $username, $userImageName, $password, $fullname, $email, $mobile);
         return redirect()->route('users.index')->with('message', __('messages.success.update'));
     }   
 

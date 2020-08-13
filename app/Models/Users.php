@@ -14,7 +14,7 @@ class Users extends Model {
     ];
 
     public static function getUsers() {
-        return self::select('*')->paginate(2);
+        return self::select('*')->paginate(config('variable.pagination'));
     }
 
     static public function getAllUsers() {
@@ -28,10 +28,6 @@ class Users extends Model {
     static public function getUserById($id) {
         return self::where('id', $id)->first();
     }
-
-    // static public function getUserImage($userImage) {
-    //     return self::where('userImage', $userImage)->first();
-    // }
 
     public static function AddUser($username, $userImage, $password, $fullname, $email, $mobile) {
         self::insert([
@@ -56,18 +52,6 @@ class Users extends Model {
             'mobile' => $mobile,
             'updated_at' => date('Y-m-d H:i:s')
         ]);
-    }
-
-    public static function UpdateU($id, $username, $password, $fullname, $email, $mobile) {
-        self::where('id', $id)
-            ->update([
-                'username' => $username,
-                'password' => $password,
-                'fullname' => $fullname,
-                'email' => $email,
-                'mobile' => $mobile,
-                'updated_at' => date('Y-m-d H:i:s')
-            ]);
     }
 
     public static function deleteUser($id)

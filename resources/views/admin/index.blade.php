@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -11,11 +10,8 @@
     <link href="{{url('css/app.css')}}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{url('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
     <script src="{{url('js/app.js')}}"></script>
-    <script src="{{url('admin/js/sweetalert2.all.min.js')}}"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <link rel="stylesheet" href="{{url('css/jquery-confirm.css')}}">
 </head>
-
 <body>
     @include("admin/layout/header")
     <section class="container-fluid hapo-wrap-content">
@@ -40,7 +36,5 @@
     </section>
     @include("admin/layout/footer")
     <script src="{{url('js/app.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src=""></script>
 </body>
 </html>
