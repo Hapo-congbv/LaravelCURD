@@ -31,6 +31,6 @@ class Users extends Model {
 
     public static function deleteUser($id)
     {
-        self::where('id', $id)->delete();
+        self::find($id)->delete();
     }
 }
