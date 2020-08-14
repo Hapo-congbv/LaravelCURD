@@ -14,5 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin/index');
 });
+
+Route::prefix('admin')->group(function () {
+    Route::get('users', 'UsersController@index')->name('users.index');
+    Route::get('users-create', 'UsersController@create')->name('users.create');
+    Route::post('users-create-save', 'UsersController@store')->name('users.create.save');
+    Route::get('users/{id}', 'UsersController@show')->name('users.show');
+    Route::get('users-edit/{id}', 'UsersController@edit')->name('users.edit');
+    Route::post('users-edit-save/{id}', 'UsersController@update')->name('users.edit.save');
+    Route::get('users-delete/{id}', 'UsersController@destroy')->name('users.delete');
+});
+
+
+// Route::resource('users', 'UsersController');

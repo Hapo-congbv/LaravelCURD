@@ -19,7 +19,6 @@ class UsersSeeder extends Seeder
                 'fullname' => 'nguyen thanh cong',
                 'email' => 'vancong1234@gmail.com',
                 'mobile' => '031239949',
-                'role' => '2',
                 'created_at' => date('Y-m-d H:i:s')
             ],
             [
@@ -29,7 +28,6 @@ class UsersSeeder extends Seeder
                 'fullname' => 'nguyen thanh Nam',
                 'email' => 'thanhNam1234@gmail.com',
                 'mobile' => '031239949',
-                'role' => '2',
                 'created_at' => date('Y-m-d H:i:s')
             ],
             [
@@ -39,7 +37,6 @@ class UsersSeeder extends Seeder
                 'fullname' => 'nguyen cong chinh',
                 'email' => 'congchinh1234@gmail.com',
                 'mobile' => '031239949',
-                'role' => '2',
                 'created_at' => date('Y-m-d H:i:s')
             ],
         ]);
