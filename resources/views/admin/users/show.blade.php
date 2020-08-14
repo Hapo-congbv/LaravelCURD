@@ -9,13 +9,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-3 p-0">
-                    <img class="hapo-img-avatar" src="{{url('storage/',$userId->user_image)}}" alt="">
+                    <img class="hapo-img-avatar" src="{{url('storage/',$user->user_image)}}" alt="">
                 </div>
                 <div class="col-7 ml-2">
-                    <div class="hapo-infor-name"><p>Account Name :<strong>{{ $userId->user_name }}</strong></p></div>
-                    <div class="hapo-infor-name"><p>FullName : <strong>{{ $userId->full_name }}</strong></p></div>
-                    <div class="hapo-infor-name"><p>Email : <strong>{{ $userId->email }}</strong></p></div>
-                    <div class="hapo-infor-name"><p>Phone : <strong>{{ $userId->mobile }}</strong></p></div>
+                    <div class="hapo-infor-name"><p>Account Name :<strong>{{ $user->user_name }}</strong></p></div>
+                    <div class="hapo-infor-name"><p>FullName : <strong>{{ $user->full_name }}</strong></p></div>
+                    <div class="hapo-infor-name"><p>Email : <strong>{{ $user->email }}</strong></p></div>
+                    <div class="hapo-infor-name"><p>Phone : <strong>{{ $user->mobile }}</strong></p></div>
                 </div>
             </div>
         </div>

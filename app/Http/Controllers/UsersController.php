@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\User;
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersRequestUpdate;
-use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller {
     public function index() {
-        $users = Users::getAllUsers();
+        $users = User::getAllUsers();
         return view('admin.users.index', compact('users'));
     }
 
@@ -20,13 +19,13 @@ class UsersController extends Controller {
     }
 
     public function store(UsersRequest $request) {
-        $users = new Users();
+        $users = new User();
         $data = $request->all();
-        $user_image = null;
+        $userImage = null;
         if ($request->hasFile('user_image')) {
-            $user_image = uniqid() . "_" . $request->user_image->getClientOriginalName();
-            $request->file('user_image')->storeAs('public', $user_image);
-            $data['user_image'] = $user_image;
+            $userImage = uniqid() . "_" . $request->user_image->getClientOriginalName();
+            $request->file('user_image')->storeAs('public', $userImage);
+            $data['user_image'] = $userImage;
         }
 
         $users::create($data);
@@ -34,26 +33,25 @@ class UsersController extends Controller {
     }
 
     public function show ($id) {
-        $user =  new Users();
-        $userId = $user::getUserById($id);
-        return view('admin.users.show',compact('userId')); 
+        $user = User::getUserById($id);
+        return view('admin.users.show', compact('user')); 
     }
 
     public function edit($id) {
-        $users = Users::getUserById($id);
+        $users = User::getUserById($id);
         return view('admin.users.edit', compact('users'));
     }
 
     public function update($id, UsersRequestUpdate $request) {
-        $users = new Users();
+        $users = new User();
         $data = $request->all();
-        $user_image = null;
+        $userImage = null;
         if ($request->hasFile('user_image')) {
-            $user_image = uniqid() . "_" . $request->user_image->getClientOriginalName();
-            $request->file('user_image')->storeAs('public', $user_image);
+            $userImage = uniqid() . "_" . $request->user_image->getClientOriginalName();
+            $request->file('user_image')->storeAs('public', $userImage);
             $image = User::find($id)->user_image;
             Storage::delete('public/' . $image);
-            $data['user_image'] = $user_image;
+            $data['user_image'] = $userImage;
         }
 
         $users::getUserById($id)->update($data);
@@ -61,8 +59,7 @@ class UsersController extends Controller {
     }   
 
     public function destroy($id) {
-        $user = new Users();
-        $user::deleteUser($id);
+        User::deleteUser($id);
         return redirect()->route('users.index')-> with('message', __('messages.success.delete'));
     }
 }
