@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersRequestUpdate;
+use App\User;
 use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller {
     public function index() {
-        $user =  new Users();
-        $users = $user::getUsers();
+        $users = Users::getAllUsers();
         return view('admin.users.index', compact('users'));
     }
 
@@ -20,19 +20,16 @@ class UsersController extends Controller {
     }
 
     public function store(UsersRequest $request) {
-        $user =  new Users();
+        $users = new Users();
+        $data = $request->all();
+        $user_image = null;
+        if ($request->hasFile('user_image')) {
+            $user_image = uniqid() . "_" . $request->user_image->getClientOriginalName();
+            $request->file('user_image')->storeAs('public', $user_image);
+            $data['user_image'] = $user_image;
+        }
 
-        $username =  $request->input('username');
-        $email = $request->input('email');
-        $fullname = $request->input('fullname');
-        $mobile =  $request->input('mobile');
-        $userImage = $request->file('userImage');
-        $password = $request->input('password');
-        //user image avatar
-        $userImageName = uniqid().'_'. $userImage->getClientOriginalName();
-        $userImage->storeAs('public/', $userImageName);
-
-        $user::AddUser($username, $userImageName, $password, $fullname, $email, $mobile);
+        $users::create($data);
         return redirect()->route('users.index')-> with('message', __('messages.success.create'));
     }
 
@@ -43,30 +40,23 @@ class UsersController extends Controller {
     }
 
     public function edit($id) {
-        $user = new Users();
-        $users = $user::getUserById($id);
+        $users = Users::getUserById($id);
         return view('admin.users.edit', compact('users'));
     }
 
     public function update($id, UsersRequestUpdate $request) {
-        $user =  new Users();
-        $username =  trim($request->input('username'));
-        $email = $request->input('email');
-        $fullname = trim($request->input('fullname'));
-        $mobile =  $request->input('mobile');
-        $userImage = $request->file('userImage');
-        $password = $request->input('password');
-        //user image avatar
-        if ($userImage != null) {
-            $userImageName = uniqid() . '_' . $userImage->getClientOriginalName();
-            $userImage->storeAs('public/', $userImageName);
-            $image =  $user::find($id)->userImage;
-            Storage::delete('public/' . $image); 
-        } else {
-            $userImageName = $user::find($id)->userImage;
+        $users = new Users();
+        $data = $request->all();
+        $user_image = null;
+        if ($request->hasFile('user_image')) {
+            $user_image = uniqid() . "_" . $request->user_image->getClientOriginalName();
+            $request->file('user_image')->storeAs('public', $user_image);
+            $image = User::find($id)->user_image;
+            Storage::delete('public/' . $image);
+            $data['user_image'] = $user_image;
         }
 
-        $user::UpdateUser($id, $username, $userImageName, $password, $fullname, $email, $mobile);
+        $users::getUserById($id)->update($data);
         return redirect()->route('users.index')->with('message', __('messages.success.update'));
     }   
 

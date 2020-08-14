@@ -13,9 +13,9 @@
                     @csrf
                     <div class="form-group">
                         <label>User Name</label>
-                        <input type="text" name="username" value="{{ $users->username }}" readonly class="form-control" placeholder="Enter Username"  required="">
-                        @if($errors->has('username'))
-                            <div class="text-danger">{{ $errors->first('username') }}</div>
+                        <input type="text" name="user_name" value="{{ $users->user_name }}" class="form-control" placeholder="Enter Username"  required="">
+                        @if($errors->has('user_name'))
+                            <div class="text-danger">{{ $errors->first('user_name') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
@@ -27,9 +27,9 @@
                     </div>
                     <div class="form-group">
                         <label>Fullname</label>
-                        <input type="text" name="fullname" value="{{ $users->fullname }}" class="form-control" placeholder="Enter Fullname"  required="">
-                        @if($errors->has('fullname'))
-                            <div class="text-danger">{{ $errors->first('fullname') }}</div>
+                        <input type="text" name="full_name" value="{{ $users->full_name }}" class="form-control" placeholder="Enter Fullname"  required="">
+                        @if($errors->has('full_name'))
+                            <div class="text-danger">{{ $errors->first('full_name') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
@@ -48,10 +48,10 @@
                     </div>
                     <div class="form-group">
                         <label>Image</label>
-                        <input type="file" name="userImage" value="{{$users->userImage}}" class="form-control" placeholder="">
-                        <img class="hapo-img-avatar mt-1 py-1 px-0" src="{{url('storage/', $users->userImage)}} ">
-                        @if($errors->has('userImage'))
-                            <div class="text-danger">{{ $errors->first('userImage') }}</div>
+                        <input type="file" name="user_image" value="{{$users->user_image}}" class="form-control" placeholder="">
+                        <img class="hapo-img-avatar mt-1 py-1 px-0" src="{{url('storage/', $users->user_image)}} ">
+                        @if($errors->has('user_image'))
+                            <div class="text-danger">{{ $errors->first('user_image') }}</div>
                         @endif
                     </div>
                     <button type="submit" class="btn btn-primary error-w3l-btn mb-5 px-4" id="center">Update</button>

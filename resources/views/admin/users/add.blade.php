@@ -13,9 +13,9 @@
                     @csrf
                     <div class="form-group">
                         <label>UserName</label>
-                        <input type="text" name="username" value="{{ old('username') }}" class="form-control" placeholder="Enter Username"  required="">
-                        @if($errors->has('username'))
-                            <div class="text-danger">{{ $errors->first('username') }}</div>
+                        <input type="text" name="user_name" value="{{ old('user_name') }}" class="form-control" placeholder="Enter Username"  required="">
+                        @if($errors->has('user_name'))
+                            <div class="text-danger">{{ $errors->first('user_name') }}</div>
                         @endif
                     </div>
                     <div class="form-group">
@@ -27,8 +27,8 @@
                     </div>
                      <div class="form-group">
                         <label>Fullname</label>
-                        <input type="text" name="fullname" value="{{ old('fullname') }}" class="form-control" placeholder="Enter Fullname"  required="">
-                        @if($errors->has('fullname'))
+                        <input type="text" name="full_name" value="{{ old('full_name') }}" class="form-control" placeholder="Enter Fullname"  required="">
+                        @if($errors->has('full_name'))
                             <div class="text-danger">{{ $errors->first('fullname') }}</div>
                         @endif
                     </div>
@@ -48,17 +48,15 @@
                     </div>
                      <div class="form-group">
                         <label>Image</label>
-                        <input type="file" name="userImage" value="{{ old('userImage') }}" class="form-control" placeholder="" required="">
-                        @if($errors->has('userImage'))
-                            <div class="text-danger">{{ $errors->first('userImage') }}</div>
+                        <input type="file" name="user_image" value="{{ old('user_image') }}" class="form-control" placeholder="" required="">
+                        @if($errors->has('user_image'))
+                            <div class="text-danger">{{ $errors->first('user_image') }}</div>
                         @endif
                     </div>
                     <button type="submit" class="btn btn-primary error-w3l-btn mb-5 px-4" id="center">Create</button>
                 </form>
             </div>
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
 </div>
 @endsection

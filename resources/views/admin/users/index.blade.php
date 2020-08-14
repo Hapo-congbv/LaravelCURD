@@ -31,14 +31,14 @@
                         <?php $STT = 0?>  
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{++$STT}}</td>
-                            <td class="hapo-img"><img src="{{url('storage/', $user->userImage)}}" alt="" srcset=""></td>
-                            <td>{{$user->fullname}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->mobile}}</td>
+                            <td>{{ ++$STT }}</td>
+                            <td class="hapo-img"><img src="{{url('storage/', $user->user_image)}}" alt="" srcset=""></td>
+                            <td>{{ $user->full_name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->mobile }}</td>
                             <td>
                                 <!-- show -->
-                                <a href data-id="{{$user->id}}" class="icon-show" data-toggle="modal" data-target="#showUser" data-id="{{$user->id}}" ><span class="btn btn-info"><i class="fas fa-user" aria-hidden="true"></i></span></a>
+                                <a href data-id="{{ $user->id }}" class="icon-show" data-toggle="modal" data-target="#showUser" data-id="{{$user->id}}" ><span class="btn btn-info"><i class="fas fa-user" aria-hidden="true"></i></span></a>
                                 <!-- edit -->
                                 <a href="{{ route('users.edit', $user->id) }}"  class="icon-edit" ><span class="btn btn-primary"> <i class="fas fa-edit" aria-hidden="true"></i></span> </a>
                                 <!-- delete -->
@@ -84,11 +84,10 @@
     });
 
     var url;
-	var id;
+    var id;
     $('.icon-show').click(function(event) {
         event.preventDefault();
         id = $(this).data('id');
-        console.log(id);
         url = 'users/';
         $.ajax({
             url: url + id,
